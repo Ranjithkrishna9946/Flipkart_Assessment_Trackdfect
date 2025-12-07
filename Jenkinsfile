@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'     // Must match Jenkins Global Tool Configuration
-        jdk 'JDK11'        // Must match Jenkins Global Tool Configuration
+        maven 'Maven3'
+        jdk 'JDK11'
     }
 
     stages {
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Publish Reports') {
             steps {
-                junit 'target/surefire-reports/*.xml'
+                junit 'test-output/testng-results.xml'
                 archiveArtifacts artifacts: 'test-output/**/*.html', allowEmptyArchive: true
             }
         }
@@ -41,4 +41,3 @@ pipeline {
         }
     }
 }
-
